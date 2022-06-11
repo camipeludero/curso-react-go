@@ -1,6 +1,7 @@
 //importaciones
 const express = require('express')
 const cors = require("cors")
+const userModel = require('./model/user.model')
 
 //declaraciones
 const app = express()
@@ -12,12 +13,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 //puerto
-app.post('/', (req, res) => {
+app.get('/users', (req, res) => { 
+    const users = userModel.getAllUsers();
 
-    const user = req.body
-    console.log(user)
-    res.send('Holisss mundoo :)')
-
+    res.status(200).json(users)
+    console.log(users)
 })
 
 //escucha
