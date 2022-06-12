@@ -12,25 +12,46 @@ const userModel = {
         }
         return null;
     },
-    getUserById: (id) => {
-        return database.users.find(user => user.id === id)
+    getUserById: async (id) => {
+        try {
+            return await User.findOne({ id })
+        } catch (error) {
+            console.log(error)
+        }
+        return null;
     },
-    deleteById: (id) => {
-        database.users.filter(user => user.id !== id)
+    getAllUsers: async () => {
+        try {
+            return await User.find({})
+        } catch (e) {
+            console.log(error)
+        }
+        return null;
     },
-    updateById: (id, user) => {
-        let userToUpdate = database.users.find(user => user.id === id);
-        userToUpdate.name = user.name;
-        userToUpdate.password = user.password;
-        return userToUpdate;
+    getUserByEmail: async (email) => {
+        try {
+            return await User.findOne({ email })
+        } catch (error) {
+            console.log(error)
+        }
+        return null;
     },
-    getAllUsers: () => {
-        const users = database.users;
-        return users;
+    deleteById: async (id) => {
+        try {
+            return await User.findOneAndDelete({ id })
+        } catch (error) {
+            console.log(error)
+        }
+        return null;
     },
-    getUserByEmail: (email) => {
-        return database.users.find(user => user.email === email)
-    }
+    updateById: async (id, updatedUser) => {
+        try {
+            return await User.findOneAndUpdate({ id }, updatedUser)
+        } catch (error) {
+            console.log(error)
+        }
+        return null;
+    },
 
 }
 

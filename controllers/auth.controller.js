@@ -81,7 +81,6 @@ module.exports = {
             message: 'Logged in succesfully',
             token
         })
-        console.log(token)
         return;
     },
 }
