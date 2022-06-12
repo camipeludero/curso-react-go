@@ -4,6 +4,7 @@ const cors = require("cors")
 const authRoutes = require("./routes/auth.routes")
 const userRoutes = require("./routes/user.routes")
 const { tokenValidator } = require('./utils')
+require("./storage/connection")
 
 //declaraciones
 const app = express()

@@ -1,9 +1,16 @@
-const database = require("../storage")
-//aca en el modelo tengo que piner la conexcion a mongoose para poner los metodos que van a actualizar la based ed datos
+const database = require("../storage");
+const User = require("../model/schemas/user.schema")
+
+//aca en el modelo tengo que poner la conexion a mongoose para poner los metodos que van a actualizar la base de datos
 const userModel = {
-    create: (user) => {
-        database.users.push(user)
-        return true;
+    create: async (user) => {
+        try {
+            const newUser = new User(user);
+            return await newUser.save();
+        } catch (error) {
+            console.log(error)
+        }
+        return null;
     },
     getUserById: (id) => {
         return database.users.find(user => user.id === id)

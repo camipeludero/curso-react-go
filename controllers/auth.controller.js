@@ -17,7 +17,7 @@ module.exports = {
             return;
         }
 
-        const existEmail = userModel.getUserByEmail(email)
+        const existEmail = await userModel.getUserByEmail(email)
 
         if (existEmail) {
             res.status(500).json({
@@ -39,7 +39,7 @@ module.exports = {
         } catch(error){
         } */
 
-        userModel.create(newUser);
+        await userModel.create(newUser);
 
         res.status(200).json({
             message: 'User created'
@@ -57,7 +57,7 @@ module.exports = {
             return;
         }
 
-        const user = userModel.getUserByEmail(email)
+        const user = await userModel.getUserByEmail(email)
 
         const validEmail = email === user.email;
 
