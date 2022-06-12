@@ -5,7 +5,7 @@ const userModel = {
         database.users.push(user)
         return true;
     },
-    findById: (id) =>{
+    getUserById: (id) => {
         return database.users.find(user => user.id === id)
     },
     deleteById: (id) => {

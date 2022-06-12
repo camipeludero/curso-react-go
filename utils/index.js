@@ -12,18 +12,18 @@ module.exports = {
     //middleware
     tokenValidator: (req, res, next) => {
         const token = req.headers['auth']
-        if(!token){
+        if (!token) {
             res.status(401).json({
                 message: 'No token provided'
             })
             return;
         }
 
-        try{
+        try {
             //const verified = jwt.verify(token, process.env.TOKENSECRET);
             const verified = jwt.verify(token, 'SECRET')
-            
-        } catch(error){
+
+        } catch (error) {
             res.status(401).json({
                 message: 'Invalid token'
             })
@@ -31,6 +31,9 @@ module.exports = {
         }
 
         next();
+    },
+    generateToken: async (data = {}) => {
+        return await jwt.sign({ data }, "SECRET", { expiresIn: 60 })
     }
 }
 
